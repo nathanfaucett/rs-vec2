@@ -67,8 +67,7 @@ pub fn min<T: Num>(out: &mut [T; 2], a: [T; 2], b: [T; 2]) -> &mut [T; 2] {
 fn test_min() {
     let mut v = [0, 0];
     min(&mut v, [1, 0], [0, 1]);
-    assert!(v[0] == 0);
-    assert!(v[1] == 0);
+    assert!(v == [0, 0]);
 }
 
 #[inline(always)]
@@ -81,6 +80,18 @@ pub fn max<T: Num>(out: &mut [T; 2], a: [T; 2], b: [T; 2]) -> &mut [T; 2] {
 fn test_max() {
     let mut v = [0, 0];
     max(&mut v, [1, 0], [0, 1]);
-    assert!(v[0] == 1);
-    assert!(v[1] == 1);
+    assert!(v == [1, 1]);
+}
+
+#[inline(always)]
+pub fn clamp<T: Num>(out: &mut [T; 2], a: [T; 2], min: [T; 2], max: [T; 2]) -> &mut [T; 2] {
+    out[0] = if a[0] < min[0] {min[0]} else if a[0] > max[0] {max[0]} else {a[0]};
+    out[1] = if a[1] < min[1] {min[1]} else if a[1] > max[1] {max[1]} else {a[1]};
+    out
+}
+#[test]
+fn test_clamp() {
+    let mut v = [0, 0];
+    clamp(&mut v, [2, 2], [0, 0], [1, 1]);
+    assert!(v == [1, 1]);
 }

@@ -1,5 +1,5 @@
 use num::Num;
-use div::{sdiv};
+use div::sdiv;
 
 
 #[inline(always)]
