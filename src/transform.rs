@@ -1,3 +1,5 @@
+extern crate vec3;
+
 use num::Num;
 use length::length_values;
 
@@ -80,14 +82,14 @@ pub fn scale_mat32<T: Num>(out: &mut [T; 2], m: [T; 6]) -> &mut [T; 2] {
 
 #[inline(always)]
 pub fn scale_mat3<T: Num>(out: &mut [T; 2], m: [T; 9]) -> &mut [T; 2] {
-    out[0] = length_values(m[0], m[3]);
-    out[1] = length_values(m[1], m[4]);
+    out[0] = vec3::length_values(m[0], m[3], m[6]);
+    out[1] = vec3::length_values(m[1], m[4], m[7]);
     out
 }
 
 #[inline(always)]
 pub fn scale_mat4<T: Num>(out: &mut [T; 2], m: [T; 16]) -> &mut [T; 2] {
-    out[0] = length_values(m[0], m[4]);
-    out[1] = length_values(m[1], m[5]);
+    out[0] = vec3::length_values(m[0], m[4], m[8]);
+    out[1] = vec3::length_values(m[1], m[5], m[9]);
     out
 }
