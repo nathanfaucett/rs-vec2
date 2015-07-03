@@ -3,8 +3,8 @@ use num::Num;
 
 #[inline(always)]
 pub fn div<T: Num>(out: &mut [T; 2], a: [T; 2], b: [T; 2]) ->  &mut [T; 2] {
-    if b[0] != T::zero() {out[0] = a[0] / b[0];} else {out[0] = T::zero();}
-    if b[1] != T::zero() {out[1] = a[1] / b[1];} else {out[1] = T::zero();}
+    out[0] = if b[0] != T::zero() {a[0] / b[0]} else {T::zero()};
+    out[1] = if b[1] != T::zero() {a[1] / b[1]} else {T::zero()};
     out
 }
 #[test]
