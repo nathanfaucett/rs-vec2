@@ -3,8 +3,8 @@ use num::Num;
 
 #[inline(always)]
 pub fn inverse<T: Num>(out: &mut [T; 2], a: [T; 2]) -> &mut [T; 2] {
-    out[0] = a[0] * -T::one();
-    out[1] = a[1] * -T::one();
+    out[0] = -a[0];
+    out[1] = -a[1];
     out
 }
 #[test]
