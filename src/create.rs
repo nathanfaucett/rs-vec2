@@ -2,16 +2,18 @@ use num::Num;
 
 
 #[inline(always)]
-pub fn create<T: Num>(x: T, y: T) -> [T; 2] {[x, y]}
+pub fn new<T: Num>(x: T, y: T) -> [T; 2] {[x, y]}
+#[inline(always)]
+pub fn create<T: Num>(x: T, y: T) -> [T; 2] {new(x, y)}
 #[test]
-fn test_create() {
-    let v = create(1, 2);
+fn test_new() {
+    let v = new(1, 2);
     assert!(v[0] == 1);
     assert!(v[1] == 2);
 }
 
 #[inline(always)]
-pub fn clone<T: Num>(v: [T; 2]) -> [T; 2] {create(v[0], v[1])}
+pub fn clone<T: Num>(v: [T; 2]) -> [T; 2] {new(v[0], v[1])}
 
 #[inline(always)]
 pub fn copy<T: Num>(out: &mut [T; 2], a: [T; 2]) -> &mut [T; 2] {
