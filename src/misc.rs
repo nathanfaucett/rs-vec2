@@ -2,7 +2,7 @@ use num::Num;
 
 
 #[inline(always)]
-pub fn inverse<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn inverse<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = -a[0];
     out[1] = -a[1];
     out
@@ -16,7 +16,7 @@ fn test_inverse() {
 }
 
 #[inline(always)]
-pub fn lerp<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2], b: &'a [T; 2], t: T) -> &'a mut [T; 2] {
+pub fn lerp<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], b: &'b [T; 2], t: T) -> &'a mut [T; 2] {
     out[0] = a[0] + (b[0] - a[0]) * t;
     out[1] = a[1] + (b[1] - a[1]) * t;
     out
@@ -30,7 +30,7 @@ fn test_lerp() {
 }
 
 #[inline(always)]
-pub fn perp<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn perp<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = a[1];
     out[1] = -a[0];
     out
@@ -44,7 +44,7 @@ fn test_perp() {
 }
 
 #[inline(always)]
-pub fn perp_r<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn perp_r<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = -a[1];
     out[1] = a[0];
     out
@@ -58,7 +58,7 @@ fn test_perp_r() {
 }
 
 #[inline(always)]
-pub fn min<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2], b: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn min<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], b: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = if b[0] < a[0] {b[0]} else {a[0]};
     out[1] = if b[1] < a[1] {b[1]} else {a[1]};
     out
@@ -71,7 +71,7 @@ fn test_min() {
 }
 
 #[inline(always)]
-pub fn max<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2], b: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn max<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], b: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = if b[0] > a[0] {b[0]} else {a[0]};
     out[1] = if b[1] > a[1] {b[1]} else {a[1]};
     out
@@ -84,7 +84,7 @@ fn test_max() {
 }
 
 #[inline(always)]
-pub fn clamp<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2], min: &'a [T; 2], max: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn clamp<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], min: &'b [T; 2], max: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = if a[0] < min[0] {min[0]} else if a[0] > max[0] {max[0]} else {a[0]};
     out[1] = if a[1] < min[1] {min[1]} else if a[1] > max[1] {max[1]} else {a[1]};
     out

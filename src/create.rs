@@ -2,9 +2,9 @@ use num::Num;
 
 
 #[inline(always)]
-pub fn new<'a, T: Num>(x: T, y: T) -> [T; 2] {[x, y]}
+pub fn new<'a, 'b, T: Num>(x: T, y: T) -> [T; 2] {[x, y]}
 #[inline(always)]
-pub fn create<'a, T: Num>(x: T, y: T) -> [T; 2] {new(x, y)}
+pub fn create<'a, 'b, T: Num>(x: T, y: T) -> [T; 2] {new(x, y)}
 #[test]
 fn test_new() {
     let v = new(1, 2);
@@ -13,10 +13,10 @@ fn test_new() {
 }
 
 #[inline(always)]
-pub fn clone<'a, T: Num>(v: &'a [T; 2]) -> [T; 2] {new(v[0], v[1])}
+pub fn clone<'a, 'b, T: Num>(v: &'b [T; 2]) -> [T; 2] {new(v[0], v[1])}
 
 #[inline(always)]
-pub fn copy<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn copy<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = a[0];
     out[1] = a[1];
     out

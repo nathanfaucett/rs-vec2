@@ -3,7 +3,7 @@ use div::sdiv;
 
 
 #[inline(always)]
-pub fn length_values_sq<'a, T: Num>(x: T, y: T) -> T {
+pub fn length_values_sq<'a, 'b, T: Num>(x: T, y: T) -> T {
     x * x + y * y
 }
 #[test]
@@ -12,7 +12,7 @@ fn test_length_values_sq() {
 }
 
 #[inline(always)]
-pub fn length_values<'a, T: Num>(x: T, y: T) -> T {
+pub fn length_values<'a, 'b, T: Num>(x: T, y: T) -> T {
     let lsq = length_values_sq(x, y);
     if lsq == T::zero() {lsq} else {lsq.sqrt()}
 }
@@ -22,7 +22,7 @@ fn test_length_values() {
 }
 
 #[inline(always)]
-pub fn inv_length_values<'a, T: Num>(x: T, y: T) -> T {
+pub fn inv_length_values<'a, 'b, T: Num>(x: T, y: T) -> T {
     let lsq = length_values_sq(x, y);
     if lsq == T::zero() {lsq} else {T::one() / lsq.sqrt()}
 }
@@ -32,7 +32,7 @@ fn test_inv_length_values() {
 }
 
 #[inline(always)]
-pub fn dot<'a, T: Num>(a: &'a [T; 2], b: &'a [T; 2]) -> T {
+pub fn dot<'a, 'b, T: Num>(a: &'b [T; 2], b: &'b [T; 2]) -> T {
     a[0] * b[0] + a[1] * b[1]
 }
 #[test]
@@ -41,7 +41,7 @@ fn test_dot() {
 }
 
 #[inline(always)]
-pub fn cross<'a, T: Num>(a: &'a [T; 2], b: &'a [T; 2]) -> T {
+pub fn cross<'a, 'b, T: Num>(a: &'b [T; 2], b: &'b [T; 2]) -> T {
     a[0] * b[1] - a[1] * b[0]
 }
 #[test]
@@ -50,7 +50,7 @@ fn test_cross() {
 }
 
 #[inline(always)]
-pub fn length<'a, T: Num>(out: &'a [T; 2]) -> T {
+pub fn length<'a, 'b, T: Num>(out: &'b [T; 2]) -> T {
     length_values(out[0], out[1])
 }
 #[test]
@@ -59,7 +59,7 @@ fn test_length() {
 }
 
 #[inline(always)]
-pub fn normalize<'a, T: Num>(out: &'a mut [T; 2], a: &'a [T; 2]) -> &'a mut [T; 2] {
+pub fn normalize<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     sdiv(out, a, length(a))
 }
 #[test]
