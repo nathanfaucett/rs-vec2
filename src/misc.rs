@@ -31,15 +31,15 @@ fn test_lerp() {
 }
 
 #[inline(always)]
-pub fn perp<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
+pub fn perp_l<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = a[1];
     out[1] = -a[0];
     out
 }
 #[test]
-fn test_perp() {
+fn test_perp_l() {
     let mut v = [0, 0];
-    perp(&mut v, &[1, 1]);
+    perp_l(&mut v, &[1, 1]);
     assert!(v[0] == 1);
     assert!(v[1] == -1);
 }
