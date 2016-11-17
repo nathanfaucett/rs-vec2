@@ -3,6 +3,7 @@ use core::f32::consts::FRAC_PI_2;
 
 use vec3;
 use num::Num;
+
 use length::{length, dot, length_values};
 
 
@@ -14,6 +15,16 @@ pub fn transform_angle<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], angle
     out[0] = a[0] * c - a[1] * s;
     out[1] = a[0] * s + a[1] * c;
     out
+}
+#[test]
+fn test_transform_angle() {
+    use misc::eq;
+
+    let mut out = [0f32, 0f32];
+    let v = [0f32, 1f32];
+    
+    transform_angle(&mut out, &v, FRAC_PI_2);
+    assert_eq!(eq(&out, &[-1f32, 0f32]), true);
 }
 
 #[inline(always)]
