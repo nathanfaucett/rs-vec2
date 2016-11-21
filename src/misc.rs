@@ -110,7 +110,7 @@ fn test_eq() {
 }
 
 #[inline(always)]
-pub fn neq<'a, T: Unsigned>(a: &'a [T; 2], b: &'a [T; 2]) -> bool {
+pub fn ne<'a, T: Unsigned>(a: &'a [T; 2], b: &'a [T; 2]) -> bool {
     !a[0].approx_eq(b[0]) ||
     !a[1].approx_eq(b[1])
 }
