@@ -1,10 +1,10 @@
-use num::Num;
+use num::Unsigned;
 
 
 #[inline(always)]
-pub fn new<T: Num>(x: T, y: T) -> [T; 2] {[x, y]}
+pub fn new<T: Unsigned>(x: T, y: T) -> [T; 2] {[x, y]}
 #[inline(always)]
-pub fn create<T: Num>(x: T, y: T) -> [T; 2] {new(x, y)}
+pub fn create<T: Unsigned>(x: T, y: T) -> [T; 2] {new(x, y)}
 #[test]
 fn test_new() {
     let v = new(1, 2);
@@ -13,10 +13,10 @@ fn test_new() {
 }
 
 #[inline(always)]
-pub fn clone<'b, T: Num>(v: &'b [T; 2]) -> [T; 2] {new(v[0], v[1])}
+pub fn clone<'b, T: Unsigned>(v: &'b [T; 2]) -> [T; 2] {new(v[0], v[1])}
 
 #[inline(always)]
-pub fn copy<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
+pub fn copy<'a, 'b, T: Unsigned>(out: &'a mut [T; 2], a: &'b [T; 2]) -> &'a mut [T; 2] {
     out[0] = a[0];
     out[1] = a[1];
     out
@@ -29,13 +29,13 @@ fn test_copy() {
 }
 
 #[inline(always)]
-pub fn from_vec3<'a, 'b, T: Num>(out: &'a mut [T; 2], v: &'b [T; 3]) -> &'a mut [T; 2] {
+pub fn from_vec3<'a, 'b, T: Unsigned>(out: &'a mut [T; 2], v: &'b [T; 3]) -> &'a mut [T; 2] {
     out[0] = v[0];
     out[1] = v[1];
     out
 }
 #[inline(always)]
-pub fn from_vec4<'a, 'b, T: Num>(out: &'a mut [T; 2], v: &'b [T; 4]) -> &'a mut [T; 2] {
+pub fn from_vec4<'a, 'b, T: Unsigned>(out: &'a mut [T; 2], v: &'b [T; 4]) -> &'a mut [T; 2] {
     out[0] = v[0];
     out[1] = v[1];
     out

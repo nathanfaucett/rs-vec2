@@ -1,8 +1,8 @@
-use num::Num;
+use num::Unsigned;
 
 
 #[inline(always)]
-pub fn add<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], b: &'b [T; 2]) ->  &'a mut [T; 2] {
+pub fn add<'a, 'b, T: Unsigned>(out: &'a mut [T; 2], a: &'b [T; 2], b: &'b [T; 2]) ->  &'a mut [T; 2] {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out
@@ -16,7 +16,7 @@ fn test_add() {
 }
 
 #[inline(always)]
-pub fn sadd<'a, 'b, T: Num>(out: &'a mut [T; 2], a: &'b [T; 2], s: T) ->  &'a mut [T; 2] {
+pub fn sadd<'a, 'b, T: Unsigned>(out: &'a mut [T; 2], a: &'b [T; 2], s: T) ->  &'a mut [T; 2] {
     out[0] = a[0] + s;
     out[1] = a[1] + s;
     out
